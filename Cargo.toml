@@ -1,0 +1,49 @@
+[package]
+name = "linger"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "linger"
+path = "src/lib.rs"
+
+[[bin]]
+name = "linger"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+argon2 = "0.5"
+async-trait = "0.1"
+axum = { version = "0.7", features = ["macros", "form"] }
+axum-extra = { version = "0.9", features = ["cookie"] }
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4", features = ["derive", "env"] }
+dotenvy = "0.15"
+http = "1"
+lettre = { version = "0.11", default-features = false, features = ["builder", "smtp-transport", "tokio1-rustls-tls"] }
+minijinja = { version = "2", features = ["loader", "json"] }
+once_cell = "1"
+rand = "0.8"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_html_form = "0.2"
+serde_json = "1"
+sha2 = "0.10"
+thiserror = "1"
+tokio = { version = "1", features = ["full"] }
+toml = "0.8"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["fs", "trace", "compression-full", "timeout", "limit"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[dependencies.sqlx]
+version = "0.8"
+features = ["runtime-tokio-rustls", "sqlite", "chrono", "uuid"]
+
+[dev-dependencies]
+tempfile = "3"
+tower = { version = "0.5", features = ["util"] }

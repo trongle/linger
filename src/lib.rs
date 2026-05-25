@@ -1,0 +1,21 @@
+pub mod app;
+pub mod auth;
+pub mod cli;
+pub mod config;
+pub mod csrf;
+pub mod db;
+pub mod email;
+pub mod error;
+pub mod generator;
+pub mod health;
+pub mod home;
+pub mod jobs;
+pub mod repositories;
+pub mod router;
+pub mod server;
+pub mod state;
+pub mod telemetry;
+pub mod templates;
+pub mod view;
+
+pub use error::{AppError, AppResult};

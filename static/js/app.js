@@ -1,0 +1,1 @@
+document.addEventListener('htmx:configRequest', (event) => { const match = document.cookie.match(/(?:^|; )csrf_token=([^;]+)/); if (match) event.detail.headers['X-CSRF-Token'] = decodeURIComponent(match[1]); });

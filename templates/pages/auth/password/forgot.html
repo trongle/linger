@@ -1,0 +1,1 @@
+{% extends "layouts/auth.html" %}{% block auth_content %}<h1>Reset password</h1><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Email<input name="email" type="email" required></label><button>Send reset link</button></form>{% endblock %}

@@ -1,0 +1,3 @@
+cookie_name = "linger_session"
+secret = "change-me-in-env"
+secure = false

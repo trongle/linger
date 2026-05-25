@@ -1,0 +1,4 @@
+enabled = false
+smtp_port = 587
+from = "Linger <noreply@example.test>"
+outbox_dir = "tmp/emails"

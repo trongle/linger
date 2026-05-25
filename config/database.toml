@@ -1,0 +1,2 @@
+url = "sqlite://tmp/linger.sqlite3"
+auto_migrate = true
