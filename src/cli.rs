@@ -131,13 +131,30 @@ async fn init(args: InitArgs) -> anyhow::Result<()> {
             .unwrap_or_else(|| "linger".into())
     });
     let pkg = normalize_package(&name);
+    let crate_name = pkg.replace('-', "_");
     let app_name = title(&pkg);
     replace_in_file(
         "Cargo.toml",
-        "name = \"linger\"",
-        &format!("name = \"{pkg}\""),
+        "[package]\nname = \"linger\"",
+        &format!("[package]\nname = \"{pkg}\""),
+    )?;
+    replace_in_file(
+        "Cargo.toml",
+        "[lib]\nname = \"linger\"",
+        &format!("[lib]\nname = \"{crate_name}\""),
+    )?;
+    replace_in_file(
+        "Cargo.toml",
+        "[[bin]]\nname = \"linger\"",
+        &format!("[[bin]]\nname = \"{pkg}\""),
     )?;
     replace_in_file("README.md", "Linger", &app_name).ok();
+    replace_in_file(
+        "src/main.rs",
+        "linger::cli::run().await",
+        &format!("{crate_name}::cli::run().await"),
+    )
+    .ok();
     replace_in_file(
         "config/app.toml",
         "name = \"Linger\"",
@@ -146,7 +163,7 @@ async fn init(args: InitArgs) -> anyhow::Result<()> {
     replace_in_file(
         "config/session.toml",
         "cookie_name = \"linger_session\"",
-        &format!("cookie_name = \"{}_session\"", pkg.replace('-', "_")),
+        &format!("cookie_name = \"{crate_name}_session\""),
     )?;
     replace_in_file(
         "config/database.toml",
